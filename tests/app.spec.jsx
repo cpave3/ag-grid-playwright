@@ -14,7 +14,7 @@ test("Check that all expected data is present", async ({ page }) => {
   ];
 
   // Verify that the data is correct
-  for (let index = 1; index < expectedData.length; index++) {
+  for (let index = 0; index < expectedData.length; index++) {
     const row = await page.locator("role=row").nth(index + 1);
     const [make, model, price] = expectedData[index];
     await expect(row).toContainText([make, model, price]);

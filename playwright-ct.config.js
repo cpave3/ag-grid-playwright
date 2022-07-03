@@ -6,8 +6,7 @@ const { devices } = require("@playwright/experimental-ct-react");
  * @type {import('@playwright/experimental-ct-react').PlaywrightTestConfig}
  */
 const config = {
-  testIgnore: "**/tests/**",
-  testDir: "./",
+  testDir: "./src",
   /* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
   snapshotDir: "./__snapshots__",
   /* Maximum time one test can run for. */
