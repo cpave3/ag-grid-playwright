@@ -3,6 +3,7 @@ import { AgGridReact } from "ag-grid-react";
 
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+import { CustomRenderer } from "./CustomRenderer";
 
 export const DataGrid = () => {
   const [rowData] = useState([
@@ -14,7 +15,7 @@ export const DataGrid = () => {
   const [columnDefs] = useState([
     { field: "make" },
     { field: "model" },
-    { field: "price" },
+    { field: "price", cellRenderer: CustomRenderer },
   ]);
 
   return (

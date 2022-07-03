@@ -1,13 +1,22 @@
-// @ts-check
-const { test, expect } = require("@playwright/test");
+import { test, expect } from "@playwright/test";
 
-test.beforeEach(async ({ page }) => {
+test("Check that all expected data is present", async ({ page }) => {
   await page.goto("http://localhost:3000");
-});
 
-test.describe("App e2e test", () => {
-  test("should have expected data", async ({ page }) => {
-    // Create 1st todo.
-    await expect(page.locator("text=Toyota")).toBeVisible();
-  });
+  // Verify that the title is correct
+  await expect(page).toHaveTitle("Vite App");
+
+  // Specify the data that we expect to be present
+  const expectedData = [
+    ["Toyota", "Celica", "$35,000"],
+    ["Ford", "Mondeo", "$32,000"],
+    ["Porsche", "Boxster", "$72,000"],
+  ];
+
+  // Verify that the data is correct
+  for (let index = 1; index < expectedData.length; index++) {
+    const row = await page.locator("role=row").nth(index + 1);
+    const [make, model, price] = expectedData[index];
+    await expect(row).toContainText([make, model, price]);
+  }
 });
